@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217687313706",
+    "firebase_url": "https://sapientiasoverilyes.firebaseio.com",
+    "project_id": "sapientiasoverilyes",
+    "storage_bucket": "sapientiasoverilyes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217687313706:android:cf0be6bfb88dbfdd",
+        "android_client_info": {
+          "package_name": "com.ilyes.sover.sapientiasoverilyes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217687313706-3ns7ri3pjcpsgub21k0f4qcg090a59hg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ilyes.sover.sapientiasoverilyes",
+            "certificate_hash": "3d1a3dab4192018a98369ca360ad1b6974658e65"
+          }
+        },
+        {
+          "client_id": "217687313706-ect6kfu87t5osajpirie01gqb1hi097g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArMj8R59nRmEmk7-hnMig17Ih4dzRw9r8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217687313706-ect6kfu87t5osajpirie01gqb1hi097g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
