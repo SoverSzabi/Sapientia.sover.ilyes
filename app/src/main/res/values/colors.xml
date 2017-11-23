@@ -6,4 +6,6 @@
     <color name="input_background">#F4E7E7</color>
     <color name="login_button">#726C6C</color>
     <color name="submit_button">#726C6C</color>
+    <color name="colorGreen">#006B3F</color>
+    <color name="textColor">#000000</color>
 </resources>
