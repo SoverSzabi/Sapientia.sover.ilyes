@@ -9,14 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginSignUp" />
-        <activity android:name=".NewAdvertisement" />
-        <activity android:name=".AboutAdvertisement" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".ListScreen"
-            android:exported="true"/>
-        <activity android:name=".SearchAdvertisement" />
-        <activity android:name=".Profile"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBlf8Bfz8Bee7Hzf5F82UeFlAt5XCPKQqM"/>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
