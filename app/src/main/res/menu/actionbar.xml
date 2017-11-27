@@ -18,12 +18,4 @@
         app:showAsAction="always"
         >
     </item>
-    <item
-        android:id="@+id/profileId"
-        android:icon="@drawable/profilicon"
-        android:orderInCategory="102"
-        android:title="profil"
-        app:showAsAction="always"
-        >
-    </item>
 </menu>
