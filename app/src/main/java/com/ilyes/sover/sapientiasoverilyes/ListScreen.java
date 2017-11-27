@@ -36,6 +36,9 @@ public class ListScreen extends AppCompatActivity {
             case R.id.addId:
                 startActivity(new Intent(this,NewAdvertisement.class));
                 return true;
+            case R.id.profileId:
+                startActivity(new Intent(this,Profile.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
