@@ -48,7 +48,7 @@ public class EmailPasswordActivity extends BaseActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.email_password);
+        setContentView(R.layout.login);
 
         // Views
         mStatusTextView = findViewById(R.id.status);
