@@ -48,7 +48,7 @@ public class NewAdvertisement extends AppCompatActivity {
         if (!TextUtils.isEmpty(title)) {
             String id = databaseAdvertisments.push().getKey();
 
-            Advertisment advertisment = new Advertisment(id, "1", title, description, location);
+            Advertisment advertisment = new Advertisment(id, "111", title, description, location);
 
             databaseAdvertisments.child(id).setValue(advertisment);
         }
