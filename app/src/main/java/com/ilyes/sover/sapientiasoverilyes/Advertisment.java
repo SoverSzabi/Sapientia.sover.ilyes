@@ -13,6 +13,8 @@ public class Advertisment
     String location;
     int isDeleted;
 
+    public Advertisment(){}
+
     public Advertisment(String advertismentId, String advertiserId, String title, String description, String location)
     {
         this.advertismentId = advertismentId;
