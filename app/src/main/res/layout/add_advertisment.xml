@@ -20,13 +20,36 @@
         android:orientation="vertical">
         
         <EditText
+            android:id="@+id/title"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Title"/>
         
         <EditText
+            android:id="@+id/description"
             android:layout_width="300dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text|textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:gravity="left|top"
+            android:text="Description" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Location"/>
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:background="@color/login_button"
+            android:layout_marginBottom="5dp"/>
         
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

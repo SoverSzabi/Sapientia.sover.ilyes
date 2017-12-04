@@ -11,6 +11,7 @@ public class Advertisment
     String title;
     String description;
     String location;
+    int isDeleted;
 
     public Advertisment(String advertismentId, String advertiserId, String title, String description, String location)
     {
@@ -19,6 +20,7 @@ public class Advertisment
         this.title          = title;
         this.description    = description;
         this.location       = location;
+        this.isDeleted      = 0;
     }
 
     public String getAdvertismentId()
@@ -67,5 +69,13 @@ public class Advertisment
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    public int getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
