@@ -1,36 +1,39 @@
 package com.ilyes.sover.sapientiasoverilyes;
 
+import android.net.Uri;
+
 /**
  * Created by Hunor on 12/2/2017.
  */
 
 public class Advertisment
 {
-    String advertismentId;
+    String id;
     String advertiserId;
     String title;
     String description;
     String location;
+    String imageURL;
     int isDeleted;
 
-    public Advertisment(String advertismentId, String advertiserId, String title, String description, String location)
+    public Advertisment(){}
+
+    public Advertisment(String advertiserId, String title, String description, String location, String imageURL)
     {
-        this.advertismentId = advertismentId;
         this.advertiserId   = advertiserId;
         this.title          = title;
         this.description    = description;
         this.location       = location;
+        this.imageURL       = imageURL;
         this.isDeleted      = 0;
     }
 
-    public String getAdvertismentId()
-    {
-        return advertismentId;
+    public String getId() {
+        return id;
     }
 
-    public void setAdvertismentId(String advertismentId)
-    {
-        this.advertismentId = advertismentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAdvertiserId() {
@@ -77,5 +80,13 @@ public class Advertisment
 
     public void setIsDeleted(int isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }
