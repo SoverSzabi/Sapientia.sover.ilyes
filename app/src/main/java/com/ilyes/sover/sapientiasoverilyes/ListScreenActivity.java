@@ -79,7 +79,7 @@ public class ListScreenActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(manager);
 
-        adapter = new AdvertismentAdapter(list);
+        adapter = new AdvertismentAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(adapter);
 
         updateList();
@@ -141,7 +141,7 @@ public class ListScreenActivity extends AppCompatActivity {
         int index = 0;
 
         for(int i = 0; i < list.size(); i++) {
-            if(list.get(i).advertismentId.equals(advertisment.advertismentId)){
+            if(list.get(i).id.equals(advertisment.id)){
                 index = i;
                 break;
             }

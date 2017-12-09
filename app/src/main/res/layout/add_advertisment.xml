@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.ilyes.sover.sapientiasoverilyes.NewAdvertisement">
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,43 +15,56 @@
         app:theme="@style/MyToolBar">
 
     </android.support.v7.widget.Toolbar>
-    
+
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        
+
         <EditText
             android:id="@+id/title"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Title"/>
-        
+            android:text="Title" />
+
         <EditText
             android:id="@+id/description"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:gravity="left|top"
             android:inputType="text|textMultiLine"
             android:lines="8"
             android:maxLines="10"
             android:minLines="6"
-            android:gravity="left|top"
             android:text="Description" />
 
         <EditText
             android:id="@+id/location"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Location"/>
+            android:text="Location" />
+
+        <Button
+            android:id="@+id/add_image_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/login_button"
+            android:text="Choose Image" />
 
         <Button
             android:id="@+id/add_button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:layout_marginBottom="5dp"
             android:background="@color/login_button"
-            android:layout_marginBottom="5dp"/>
-        
+            android:text="Add" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="300dp"
+            android:layout_height="150dp"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

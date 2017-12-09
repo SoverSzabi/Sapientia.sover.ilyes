@@ -25,4 +25,10 @@
         android:text="Location"
         android:layout_marginBottom="30dp"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_below="@id/locationTextView"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
 </RelativeLayout>
