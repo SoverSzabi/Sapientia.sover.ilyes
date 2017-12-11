@@ -3,9 +3,7 @@ package com.ilyes.sover.sapientiasoverilyes;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,10 +25,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.IOException;
-import java.util.UUID;
-
-public class NewAdvertisement extends AppCompatActivity {
+public class NewAdvertisementActivity extends AppCompatActivity {
 
     private EditText editTextTitle, editTextDescription, editTextLocation;
     private Button buttonAdd, buttonAddImage;
@@ -93,14 +87,7 @@ public class NewAdvertisement extends AppCompatActivity {
                 && data != null && data.getData() != null)
         {
             imagePath = data.getData();
-
-            /*try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imagePath);
-                imageView.setImageBitmap(bitmap);*/
-                Glide.with(getApplicationContext()).load(imagePath).into(imageView);
-            /*} catch (IOException e) {
-                e.printStackTrace();
-            }*/
+            Glide.with(getApplicationContext()).load(imagePath).into(imageView);
         }
     }
 
@@ -124,14 +111,17 @@ public class NewAdvertisement extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(NewAdvertisement.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewAdvertisementActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
 
                             String title = editTextTitle.getText().toString().trim();
                             String description = editTextDescription.getText().toString().trim();
                             String location = editTextLocation.getText().toString().trim();
                             String downloadURL = taskSnapshot.getDownloadUrl().toString();
 
-                            Advertisment advertisment = new Advertisment("1", title, description, location, downloadURL);
+                            FirebaseUser loggedInUser = FirebaseAuth.getInstance().getCurrentUser();
+                            String advertiserId = loggedInUser.getUid().toString();
+
+                            Advertisment advertisment = new Advertisment(advertiserId, title, description, location, downloadURL);
 
                             String key = mDatabaseReference.push().getKey();
                             mDatabaseReference.child(key).setValue(advertisment);
@@ -143,7 +133,7 @@ public class NewAdvertisement extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(NewAdvertisement.this, "Failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewAdvertisementActivity.this, "Failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
