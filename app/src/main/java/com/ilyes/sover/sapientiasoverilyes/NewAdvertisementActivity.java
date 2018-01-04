@@ -25,12 +25,22 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import static com.ilyes.sover.sapientiasoverilyes.DetailsActivity.EXTRA_ITEM;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_ADVID;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_DESCRIPTION;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_ID;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_LOCATION;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_TITLE;
+import static com.ilyes.sover.sapientiasoverilyes.ListScreenActivity.EXTRA_URL;
+
 public class NewAdvertisementActivity extends AppCompatActivity {
 
     private EditText editTextTitle, editTextDescription, editTextLocation;
     private Button buttonAdd, buttonAddImage;
     private ImageView imageView;
     private Uri imagePath;
+
+    private Advertisment advertisment;
 
     private StorageReference mStorageReference;
     private DatabaseReference mDatabaseReference;
@@ -66,10 +76,37 @@ public class NewAdvertisementActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadAdvertisment();
+                uploadAdvertisment(advertisment);
             }
         });
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            int isNew = bundle.getInt("id");
+
+            if (isNew != 1) {
+                Intent intent = getIntent();
+
+                final String item = intent.getStringExtra(EXTRA_ITEM);
+
+                if (item.equals("update")) {
+                    final String imageURL = intent.getStringExtra(EXTRA_URL);
+                    final String title = intent.getStringExtra(EXTRA_TITLE);
+                    final String description = intent.getStringExtra(EXTRA_DESCRIPTION);
+                    final String location = intent.getStringExtra(EXTRA_LOCATION);
+
+                    final String id = intent.getStringExtra(EXTRA_ID);
+                    final String advertiserId = intent.getStringExtra(EXTRA_ADVID);
+
+                    editTextTitle.setText(title);
+                    editTextDescription.setText(description);
+                    editTextLocation.setText(location);
+                    Glide.with(getApplicationContext()).load(imageURL).into(imageView);
+
+                    advertisment = new Advertisment(id, advertiserId, title, description, location, imageURL);
+                }
+            }
+        }
     }
 
     private void chooseImage() {
@@ -98,7 +135,7 @@ public class NewAdvertisementActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    private void uploadAdvertisment()
+    private void uploadAdvertisment( final Advertisment advertisment)
     {
         if(imagePath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -121,11 +158,17 @@ public class NewAdvertisementActivity extends AppCompatActivity {
                             FirebaseUser loggedInUser = FirebaseAuth.getInstance().getCurrentUser();
                             String advertiserId = loggedInUser.getUid().toString();
 
-                            Advertisment advertisment = new Advertisment(advertiserId, title, description, location, downloadURL);
+                            Advertisment newAdvertisment = new Advertisment(advertiserId, title, description, location, downloadURL);
 
                             String key = mDatabaseReference.push().getKey();
-                            mDatabaseReference.child(key).setValue(advertisment);
-                            advertisment.setId(key);
+                            newAdvertisment.setId(key);
+
+                            if (advertisment != null) {
+                                key = advertisment.getId();
+                                newAdvertisment.setId(key);
+                            }
+
+                            mDatabaseReference.child(key).setValue(newAdvertisment);
 
                             startActivity(new Intent(getBaseContext(), ListScreenActivity.class));
                         }

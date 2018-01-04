@@ -12,22 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListScreenActivity" />
-        <activity android:name=".NewAdvertisementActivity" />
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".EmailPasswordActivity">
+        <activity android:name=".ListScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NewAdvertisementActivity" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".EmailPasswordActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".GoogleSignInActivity" />
-        <activity android:name=".MyAdvertismentsActivity"></activity>
+        <activity android:name=".Profile"></activity>
     </application>
 
 </manifest>

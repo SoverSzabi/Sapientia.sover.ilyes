@@ -3,47 +3,63 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/grey_300"
+    android:textColor="@color/colorGreen"
     android:layout_height="match_parent"
     tools:context="com.ilyes.sover.sapientiasoverilyes.NewAdvertisementActivity">
 
+
     <LinearLayout
         android:layout_width="369dp"
-        android:layout_height="514dp"
+        android:layout_height="574dp"
+
         android:orientation="vertical"
         android:paddingLeft="35dp"
         android:paddingTop="20dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="56dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="4dp">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:text="Add Advertisment"
+            android:textColor="@color/colorGreen"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/title"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:hint="Title"
+            android:textColorHint="@color/colorGreen" />
 
         <EditText
             android:id="@+id/description"
             android:layout_width="300dp"
             android:layout_height="128dp"
             android:gravity="left|top"
+            android:hint="Description"
             android:inputType="text|textMultiLine"
             android:lines="8"
             android:maxLines="10"
             android:minLines="6"
-            android:text="Description" />
+            android:textColorHint="@color/colorGreen" />
 
         <EditText
             android:id="@+id/location"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Location" />
+            android:hint="Location"
+            android:textColorHint="@color/colorGreen" />
 
         <Button
             android:id="@+id/add_image_button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:background="@color/login_button"
+            android:background="@color/colorGreen"
             android:text="Choose Image" />
 
         <Button
@@ -51,7 +67,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:background="@color/login_button"
+            android:background="@color/colorGreen"
             android:text="Add" />
 
         <ImageView

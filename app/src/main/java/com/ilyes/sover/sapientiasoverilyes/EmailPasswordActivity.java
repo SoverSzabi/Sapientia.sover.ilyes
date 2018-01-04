@@ -21,8 +21,6 @@ public class EmailPasswordActivity extends BaseActivity implements
 
     private static final String TAG = "EmailPassword";
 
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -36,8 +34,6 @@ public class EmailPasswordActivity extends BaseActivity implements
         setContentView(R.layout.email_password);
 
         // Views
-        mStatusTextView = findViewById(R.id.status);
-        mDetailTextView = findViewById(R.id.detail);
         mEmailField = findViewById(R.id.field_email);
         mPasswordField = findViewById(R.id.field_password);
 
@@ -50,6 +46,15 @@ public class EmailPasswordActivity extends BaseActivity implements
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            int id = bundle.getInt("id");
+            if (id == 1) {
+                signOut();
+            }
+        }
     }
 
     // [START on_start_check_user]
@@ -59,8 +64,11 @@ public class EmailPasswordActivity extends BaseActivity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+
         if(currentUser != null) {
-            startActivity(new Intent(getBaseContext(), ListScreenActivity.class));
+            Intent intent = new Intent(EmailPasswordActivity.this, ListScreenActivity.class);
+            intent.putExtra("id", 1);
+            startActivity(intent);
         }
     }
     // [END on_start_check_user]
@@ -117,7 +125,10 @@ public class EmailPasswordActivity extends BaseActivity implements
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            startActivity(new Intent(getBaseContext(), ListScreenActivity.class));
+
+                            Intent intent = new Intent(EmailPasswordActivity.this, ListScreenActivity.class);
+                            intent.putExtra("id", 1);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -126,10 +137,6 @@ public class EmailPasswordActivity extends BaseActivity implements
                             updateUI(null);
                         }
 
-                        // [START_EXCLUDE]
-                        if (!task.isSuccessful()) {
-                            mStatusTextView.setText(R.string.auth_failed);
-                        }
                         hideProgressDialog();
                         // [END_EXCLUDE]
                     }
@@ -140,6 +147,9 @@ public class EmailPasswordActivity extends BaseActivity implements
     private void signOut() {
         mAuth.signOut();
         updateUI(null);
+        Intent intent = new Intent(EmailPasswordActivity.this, ListScreenActivity.class);
+        intent.putExtra("id", 1);
+        startActivity(intent);
     }
 
     private void sendEmailVerification() {
@@ -198,22 +208,12 @@ public class EmailPasswordActivity extends BaseActivity implements
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
             findViewById(R.id.email_password_fields).setVisibility(View.GONE);
             findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
 
             findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
-        } else {
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
-
-            findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
-            findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
-            findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
         }
     }
 

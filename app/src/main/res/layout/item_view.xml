@@ -2,33 +2,41 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:textColor="@color/grey_100"
+    android:background="@drawable/gradient_top"
+    android:padding="10dp"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:background="?attr/selectableItemBackground">
+    >
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title" />
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleTextView"
-        android:text="Description" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="Title"
+        android:textSize="20dp"
+        android:textColor="@color/colorGreen" />
+
     <TextView
         android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/descriptionTextView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/titleTextView"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
         android:text="Location"
-        android:layout_marginBottom="30dp"/>
+        android:textColor="@color/colorGreen" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_below="@id/locationTextView"
-        android:layout_width="300dp"
-        android:layout_height="300dp" />
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/locationTextView"
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>

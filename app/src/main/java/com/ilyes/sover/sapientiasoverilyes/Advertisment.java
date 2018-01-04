@@ -28,6 +28,16 @@ public class Advertisment
         this.isDeleted      = 0;
     }
 
+    public Advertisment(String id, String advertiserId, String title, String description, String location, String imageURL)
+    {
+        this.id             = id;
+        this.advertiserId   = advertiserId;
+        this.title          = title;
+        this.description    = description;
+        this.location       = location;
+        this.imageURL       = imageURL;
+        this.isDeleted      = 0;
+    }
     public String getId() {
         return id;
     }
